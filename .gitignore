@@ -4,3 +4,4 @@ configs/.upstream_version
 upgrade-*.bin
 _upgrade-*.bin.extracted/
 /_upgrade-*
+/openwrt-cc/files/

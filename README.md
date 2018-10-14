@@ -6,12 +6,6 @@
 
 ## MAIN
 
-### Clone
-
-```
-git clone https://github.com/d1slact0r/gl-ar150-pineapple-firmware-builder.git
-```
-
 ### Run
 
 The most common way to build the firmware is simply to run `build_pineapple.sh`. This will check for newer upstream code, download it and compile the firmware for the ar-150. If your currently synced code/built firmware is at its newest, nothing will be done. 
