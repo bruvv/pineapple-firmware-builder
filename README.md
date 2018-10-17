@@ -11,7 +11,7 @@ do_page_fault(): sending SIGSEGV to pineapd for invalid read access from 0000005
 [ 515.263461] epc = 770088a1 in libpcap.so.1[77000000+2b000]
 [ 515.268826] ra = 004053f8 in pineapd[400000+e000]
 ```
-At this point I can not debug this so I have no idea where it is crashing. If someone does know what it is checking please let me know.
+At this point I can not debug this so I have no idea where it is crashing. If someone does know what it is checking please let me know here: https://github.com/d1slact0r/pineapple-firmware-builder/issues/1
 
 ### Firmware
 If you have something that is missing in the build (like firmware) let me know. I made it as complete as possible but I can't know all the firmwares.
