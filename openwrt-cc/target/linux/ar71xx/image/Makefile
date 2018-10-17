@@ -145,10 +145,15 @@ endef
 TARGET_DEVICES += weio
 
 define Device/gl-ar150
-  BOARDNAME = GL-AR150
-  IMAGE_SIZE = 16000k
-  CONSOLE = ttyATH0,115200
-  MTDPARTS = spi0.0:256k(u-boot)ro,64k(u-boot-env)ro,16000k(firmware),64k(art)ro
+    $(Device/tplink-16mlzma)
+    BOARDNAME := PINEAPPLE-NANO
+    DEVICE_PROFILE := HAK5_PINEAPPLE_NANO
+    TPLINK_HWID := 0x4e414e4f
+    CONSOLE := ttyATH0,115200
+#  BOARDNAME = GL-AR150
+#  IMAGE_SIZE = 16000k
+#  CONSOLE = ttyATH0,115200
+#  MTDPARTS = spi0.0:256k(u-boot)ro,64k(u-boot-env)ro,16000k(firmware),64k(art)ro
 endef
 TARGET_DEVICES += gl-ar150
 
