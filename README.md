@@ -1,8 +1,9 @@
-# GLi-NET GL-AR150 WiFi PINEAPPLE FIRMWARE BUILDER
+# WORK IN PROCESS!
+This is still a work in process, it's for education purposes only. It makes our gl-ar150 run openwrt with HAK5 pineapples skin. The only thing that is _not_ working is the pineapd.
+in the pineapd.bin there is a hardware check but I am still not sure what check this is. I will try and debug it and update this build from time to time. if you want to help out let me know!
 
-> all of the fancy work, none of the fancy name
-
----
+## Issues
+If you have something that is missing in the build (like firmware) let me know. I made it as complete as possible but I can't know all the firmwares.
 
 ## MAIN
 
