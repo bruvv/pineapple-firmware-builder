@@ -18,7 +18,7 @@ apt_get() {
     sudo apt-get install -y \
     git build-essential zlib1g-dev liblzma-dev python-magic subversion g++-6 \
     libncurses5-dev gawk flex quilt curl wget gcc binutils bzip2 python2.7 python-pip  \
-    libssl-dev xsltproc libxml-parser-perl mercurial bzr ecj cvs unzip binwalk \
+    libssl1.0-dev xsltproc libxml-parser-perl mercurial bzr ecj cvs unzip binwalk \
     make grep diffutils libc6 time perl
 }
 
