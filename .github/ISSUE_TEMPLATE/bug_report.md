@@ -4,10 +4,14 @@ about: Create a report to help us improve
 
 ---
 
-# if it is regarding pineapd not starting please read here: https://github.com/d1slact0r/pineapple-firmware-builder/issues/1 and do not create an extra issue.
-
 **Describe the bug**
 A clear and concise description of what the bug is.
+
+**Screenshots**
+log (if pineapd please run it with --debug and post the log
+```
+here
+```
 
 **To Reproduce**
 Steps to reproduce the behavior:
