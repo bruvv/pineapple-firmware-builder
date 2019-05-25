@@ -461,9 +461,6 @@ ar71xx_board_detect() {
 		name="gl-inet"
 		gl_inet_board_detect
 		;;
-	*"WiFi Pineapple NANO")
-        	name="gl-ar150"
-        	;;
 	*"EnGenius EPG5000")
 		name="epg5000"
 		;;
