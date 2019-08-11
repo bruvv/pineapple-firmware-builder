@@ -70,7 +70,7 @@
     "npm-install-checks": "~3.0.0",
     "npm-package-arg": "~6.1.0",
     "npm-registry-client": "~8.6.0",
-    "npm-user-validate": "~0.1.5",
+    "npm-user-validate": "~1.0.0",
     "npmlog": "~4.1.0",
     "once": "~1.4.0",
     "opener": "~1.5.0",
