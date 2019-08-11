@@ -80,7 +80,7 @@
     "read-cmd-shim": "~1.0.1",
     "read-installed": "~4.0.3",
     "read-package-json": "~2.0.4",
-    "read-package-tree": "~5.1.5",
+    "read-package-tree": "~5.3.0",
     "readable-stream": "~2.1.5",
     "realize-package-specifier": "~3.0.3",
     "request": "~2.74.0",
