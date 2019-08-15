@@ -1,0 +1,10 @@
+{
+  "automerge": true,
+  "requiredStatusChecks": null,
+  "forkMode": true,
+  "includeForks": true,
+  "baseBranches": "updates",
+  "extends": [
+    "config:base"
+  ]
+}
