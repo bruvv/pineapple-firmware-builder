@@ -3,7 +3,9 @@
   "requiredStatusChecks": null,
   "forkMode": true,
   "includeForks": true,
-  "baseBranches": "updates",
+  "baseBranches": [
+    "updates"
+  ],
   "extends": [
     "config:base"
   ]
