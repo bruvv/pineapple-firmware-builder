@@ -194,7 +194,7 @@
     "npm-registry-mock": "1.0.1",
     "require-inject": "1.4.4",
     "sprintf-js": "1.0.3",
-    "standard": "6.0.8",
+    "standard": "14.0.0",
     "tacks": "1.2.7",
     "tap": "7.0.1"
   },
