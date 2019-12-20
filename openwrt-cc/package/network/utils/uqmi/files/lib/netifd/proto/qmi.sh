@@ -42,11 +42,6 @@ _proto_qmi_setup() {
 
 	[ -n "$ctl_device" ] && device=$ctl_device
 
-	#delay if modem reset
-	while true; do
-		[ -c "$device" ] && break || sleep 25
-	done
-
 	[ -n "$device" ] || {
 		echo "No control device specified"
 		proto_notify_error "$interface" NO_DEVICE
@@ -72,16 +67,9 @@ _proto_qmi_setup() {
 
 	[ -n "$delay" ] && sleep "$delay"
 
-	while true; do
-		uqmi -s -d "$device" --get-pin-status >/tmp/uqmi-pin-status &
-		uqmi_pid=$!
-		sleep 2
-		kill $uqmi_pid 2>/dev/null
-		# kill succeed ie uqmi process blocked
-		[ $? = 0 ] && continue
-		[ ! `grep 'UIM uninitialized' /tmp/uqmi-pin-status` ] && break
+	while uqmi -s -d "$device" --get-pin-status | grep '"UIM uninitialized"' > /dev/null; do
+		sleep 1;
 	done
-	rm -f /tmp/uqmi-pin-status
 
 	[ -n "$pincode" ] && {
 		uqmi -s -d "$device" --verify-pin1 "$pincode" || {
@@ -102,14 +90,6 @@ _proto_qmi_setup() {
 
 	uqmi -s -d "$device" --set-data-format 802.3
 	uqmi -s -d "$device" --wda-set-data-format 802.3
-
-	if uqmi -s -d "$device" --wda-get-data-format | grep raw > /dev/null; then
-		if [ ! -w "/sys/class/net/$ifname/qmi/raw_ip" ]; then
-		echo "Unable to set data format and raw_ip unsupported"
-		return 1
-		fi
-		echo Y >"/sys/class/net/$ifname/qmi/raw_ip"
-	fi
 
 	echo "Waiting for network registration"
 	while uqmi -s -d "$device" --get-serving-system | grep '"searching"' > /dev/null; do

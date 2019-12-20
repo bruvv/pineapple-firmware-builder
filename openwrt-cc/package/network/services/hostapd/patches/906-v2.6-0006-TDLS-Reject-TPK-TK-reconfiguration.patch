@@ -23,6 +23,8 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  src/rsn_supp/tdls.c | 38 ++++++++++++++++++++++++++++++++++++--
  1 file changed, 36 insertions(+), 2 deletions(-)
 
+diff --git a/src/rsn_supp/tdls.c b/src/rsn_supp/tdls.c
+index e424168..9eb9738 100644
 --- a/src/rsn_supp/tdls.c
 +++ b/src/rsn_supp/tdls.c
 @@ -112,6 +112,7 @@ struct wpa_tdls_peer {
@@ -33,7 +35,7 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  	int tpk_success;
  	int tpk_in_progress;
  
-@@ -192,6 +193,20 @@ static int wpa_tdls_set_key(struct wpa_s
+@@ -192,6 +193,20 @@ static int wpa_tdls_set_key(struct wpa_sm *sm, struct wpa_tdls_peer *peer)
  	u8 rsc[6];
  	enum wpa_alg alg;
  
@@ -54,7 +56,7 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  	os_memset(rsc, 0, 6);
  
  	switch (peer->cipher) {
-@@ -209,12 +224,15 @@ static int wpa_tdls_set_key(struct wpa_s
+@@ -209,12 +224,15 @@ static int wpa_tdls_set_key(struct wpa_sm *sm, struct wpa_tdls_peer *peer)
  		return -1;
  	}
  
@@ -70,7 +72,7 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  	return 0;
  }
  
-@@ -696,7 +714,7 @@ static void wpa_tdls_peer_clear(struct w
+@@ -696,7 +714,7 @@ static void wpa_tdls_peer_clear(struct wpa_sm *sm, struct wpa_tdls_peer *peer)
  	peer->cipher = 0;
  	peer->qos_info = 0;
  	peer->wmm_capable = 0;
@@ -87,7 +89,7 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  	wpa_hexdump(MSG_DEBUG, "TDLS: Initiator Nonce for TPK handshake",
  		    peer->inonce, WPA_NONCE_LEN);
  	os_memcpy(ftie->Snonce, peer->inonce, WPA_NONCE_LEN);
-@@ -1751,6 +1770,19 @@ static int wpa_tdls_addset_peer(struct w
+@@ -1751,6 +1770,19 @@ static int wpa_tdls_addset_peer(struct wpa_sm *sm, struct wpa_tdls_peer *peer,
  }
  
  
@@ -125,3 +127,6 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  	}
  
  #if 0
+-- 
+2.7.4
+

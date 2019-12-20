@@ -330,6 +330,9 @@ ar71xx_board_detect() {
 	*"AirRouter")
 		name="airrouter"
 		;;
+	*"ALFA Network AP120C")
+		name="alfa-ap120c"
+		;;
 	*"ALFA Network AP96")
 		name="alfa-ap96"
 		;;
@@ -439,11 +442,8 @@ ar71xx_board_detect() {
 	*"Dragino v2")
 		name="dragino2"
 		;;
-	*"Domino Pi")
-		name="gl-domino"
-		;;
-	*"GL-AR300")
-		name="gl-ar300"
+	*"DW33D")
+		name="dw33d"
 		;;
 	*"EAP300 v2")
 		name="eap300v2"
@@ -461,18 +461,9 @@ ar71xx_board_detect() {
 		name="gl-inet"
 		gl_inet_board_detect
 		;;
-	*"GL-AR150")
-        name="gl-ar150"
-        ;;
-	*"GL-AR300M")
-		name="gl-ar300m"
-		;;
-	*"GL-MIFI")
-        name="gl-mifi"
-        ;;
-	*"GL-USB150")
-		name="gl-usb150"
-		;;
+	*"WiFi Pineapple NANO")
+        	name="gl-ar150"
+        	;;
 	*"EnGenius EPG5000")
 		name="epg5000"
 		;;
@@ -533,6 +524,12 @@ ar71xx_board_detect() {
 	*MR600v2)
 		name="mr600v2"
 		;;
+	*MR1750)
+		name="mr1750"
+		;;
+	*MR1750v2)
+		name="mr1750v2"
+		;;
 	*MR600)
 		name="mr600"
 		;;
@@ -575,6 +572,9 @@ ar71xx_board_detect() {
 	*"OM2P HSv2")
 		name="om2p-hsv2"
 		;;
+	*"OM2P HSv3")
+		name="om2p-hsv3"
+		;;
 	*"OM2P LC")
 		name="om2p-lc"
 		;;
@@ -583,6 +583,12 @@ ar71xx_board_detect() {
 		;;
 	*"OM5P AN")
 		name="om5p-an"
+		;;
+	*"OM5P AC")
+		name="om5p-ac"
+		;;
+	*"OM5P ACv2")
+		name="om5p-acv2"
 		;;
 	*"Onion Omega")
 		name="onion-omega"
@@ -782,6 +788,9 @@ ar71xx_board_detect() {
 	*"TL-WA901ND v3")
 		name="tl-wa901nd-v3"
 		;;
+	*"TL-WA901ND v4")
+		name="tl-wa901nd-v4"
+		;;
 	*"TL-WDR3500")
 		name="tl-wdr3500"
 		;;
@@ -808,6 +817,9 @@ ar71xx_board_detect() {
 		;;
 	*"TL-WR841N/ND v9")
 		name="tl-wr841n-v9"
+		;;
+    *"TL-WR841N/ND v11")
+        name="tl-wr841n-v11"
 		;;
 	*"TL-WR842N/ND v2")
 		name="tl-wr842n-v2"
@@ -917,8 +929,14 @@ ar71xx_board_detect() {
 	*"WNR1000 V2")
 		name="wnr1000-v2"
 		;;
+	*WPN824N)
+		name="wpn824n"
+		;;
 	*WRT160NL)
 		name="wrt160nl"
+		;;
+	*E2100L)
+		name="e2100l"
 		;;
 	*WRT400N)
 		name="wrt400n"

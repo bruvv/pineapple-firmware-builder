@@ -16,6 +16,8 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  src/rsn_supp/wpa_i.h |  2 ++
  2 files changed, 40 insertions(+), 15 deletions(-)
 
+diff --git a/src/rsn_supp/wpa.c b/src/rsn_supp/wpa.c
+index 95bd7be..7a2c68d 100644
 --- a/src/rsn_supp/wpa.c
 +++ b/src/rsn_supp/wpa.c
 @@ -709,14 +709,17 @@ struct wpa_gtk_data {
@@ -39,7 +41,7 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  		wpa_dbg(sm->ctx->msg_ctx, MSG_DEBUG,
  			"WPA: Not reinstalling already in-use GTK to the driver (keyidx=%d tx=%d len=%d)",
  			gd->keyidx, gd->tx, gd->gtk_len);
-@@ -757,8 +760,14 @@ static int wpa_supplicant_install_gtk(st
+@@ -757,8 +760,14 @@ static int wpa_supplicant_install_gtk(struct wpa_sm *sm,
  	}
  	os_memset(gtk_buf, 0, sizeof(gtk_buf));
  
@@ -56,7 +58,7 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  
  	return 0;
  }
-@@ -852,7 +861,7 @@ static int wpa_supplicant_pairwise_gtk(s
+@@ -852,7 +861,7 @@ static int wpa_supplicant_pairwise_gtk(struct wpa_sm *sm,
  	    (wpa_supplicant_check_group_cipher(sm, sm->group_cipher,
  					       gtk_len, gtk_len,
  					       &gd.key_rsc_len, &gd.alg) ||
@@ -65,7 +67,7 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  		wpa_dbg(sm->ctx->msg_ctx, MSG_DEBUG,
  			"RSN: Failed to install GTK");
  		os_memset(&gd, 0, sizeof(gd));
-@@ -868,14 +877,18 @@ static int wpa_supplicant_pairwise_gtk(s
+@@ -868,14 +877,18 @@ static int wpa_supplicant_pairwise_gtk(struct wpa_sm *sm,
  
  #ifdef CONFIG_IEEE80211W
  static int wpa_supplicant_install_igtk(struct wpa_sm *sm,
@@ -87,7 +89,7 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  		wpa_dbg(sm->ctx->msg_ctx, MSG_DEBUG,
  			"WPA: Not reinstalling already in-use IGTK to the driver (keyidx=%d)",
  			keyidx);
-@@ -900,8 +913,14 @@ static int wpa_supplicant_install_igtk(s
+@@ -900,8 +913,14 @@ static int wpa_supplicant_install_igtk(struct wpa_sm *sm,
  		return -1;
  	}
  
@@ -104,7 +106,7 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  
  	return 0;
  }
-@@ -924,7 +943,7 @@ static int ieee80211w_set_keys(struct wp
+@@ -924,7 +943,7 @@ static int ieee80211w_set_keys(struct wpa_sm *sm,
  			return -1;
  
  		igtk = (const struct wpa_igtk_kde *) ie->igtk;
@@ -113,7 +115,7 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  			return -1;
  	}
  
-@@ -1574,7 +1593,7 @@ static void wpa_supplicant_process_1_of_
+@@ -1574,7 +1593,7 @@ static void wpa_supplicant_process_1_of_2(struct wpa_sm *sm,
  	if (wpa_supplicant_rsc_relaxation(sm, key->key_rsc))
  		key_rsc = null_rsc;
  
@@ -122,7 +124,7 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  	    wpa_supplicant_send_2_of_2(sm, key, ver, key_info) < 0)
  		goto failed;
  	os_memset(&gd, 0, sizeof(gd));
-@@ -2389,8 +2408,10 @@ void wpa_sm_notify_assoc(struct wpa_sm *
+@@ -2386,8 +2405,10 @@ void wpa_sm_notify_assoc(struct wpa_sm *sm, const u8 *bssid)
  		sm->tptk_set = 0;
  		os_memset(&sm->tptk, 0, sizeof(sm->tptk));
  		os_memset(&sm->gtk, 0, sizeof(sm->gtk));
@@ -133,7 +135,7 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  #endif /* CONFIG_IEEE80211W */
  	}
  
-@@ -2923,8 +2944,10 @@ void wpa_sm_drop_sa(struct wpa_sm *sm)
+@@ -2920,8 +2941,10 @@ void wpa_sm_drop_sa(struct wpa_sm *sm)
  	os_memset(&sm->ptk, 0, sizeof(sm->ptk));
  	os_memset(&sm->tptk, 0, sizeof(sm->tptk));
  	os_memset(&sm->gtk, 0, sizeof(sm->gtk));
@@ -144,7 +146,7 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  #endif /* CONFIG_IEEE80211W */
  #ifdef CONFIG_IEEE80211R
  	os_memset(sm->xxkey, 0, sizeof(sm->xxkey));
-@@ -2989,7 +3012,7 @@ int wpa_wnmsleep_install_key(struct wpa_
+@@ -2986,7 +3009,7 @@ int wpa_wnmsleep_install_key(struct wpa_sm *sm, u8 subelem_id, u8 *buf)
  
  		wpa_hexdump_key(MSG_DEBUG, "Install GTK (WNM SLEEP)",
  				gd.gtk, gd.gtk_len);
@@ -153,7 +155,7 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  			os_memset(&gd, 0, sizeof(gd));
  			wpa_printf(MSG_DEBUG, "Failed to install the GTK in "
  				   "WNM mode");
-@@ -3001,7 +3024,7 @@ int wpa_wnmsleep_install_key(struct wpa_
+@@ -2998,7 +3021,7 @@ int wpa_wnmsleep_install_key(struct wpa_sm *sm, u8 subelem_id, u8 *buf)
  		const struct wpa_igtk_kde *igtk;
  
  		igtk = (const struct wpa_igtk_kde *) (buf + 2);
@@ -162,6 +164,8 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  			return -1;
  #endif /* CONFIG_IEEE80211W */
  	} else {
+diff --git a/src/rsn_supp/wpa_i.h b/src/rsn_supp/wpa_i.h
+index afc9e37..9a54631 100644
 --- a/src/rsn_supp/wpa_i.h
 +++ b/src/rsn_supp/wpa_i.h
 @@ -32,8 +32,10 @@ struct wpa_sm {
@@ -175,3 +179,6 @@ Signed-off-by: Jouni Malinen <j@w1.fi>
  #endif /* CONFIG_IEEE80211W */
  
  	struct eapol_sm *eapol; /* EAPOL state machine from upper level code */
+-- 
+2.7.4
+

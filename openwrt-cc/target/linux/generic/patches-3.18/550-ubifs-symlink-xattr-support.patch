@@ -1,6 +1,6 @@
 --- a/fs/ubifs/file.c
 +++ b/fs/ubifs/file.c
-@@ -1573,6 +1573,10 @@ const struct inode_operations ubifs_syml
+@@ -1597,6 +1597,10 @@ const struct inode_operations ubifs_syml
  	.follow_link = ubifs_follow_link,
  	.setattr     = ubifs_setattr,
  	.getattr     = ubifs_getattr,
@@ -39,7 +39,7 @@
  
 --- a/fs/ubifs/xattr.c
 +++ b/fs/ubifs/xattr.c
-@@ -209,12 +209,12 @@ static int change_xattr(struct ubifs_inf
+@@ -210,12 +210,12 @@ static int change_xattr(struct ubifs_inf
  		goto out_free;
  	}
  	inode->i_size = ui->ui_size = size;

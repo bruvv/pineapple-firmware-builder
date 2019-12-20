@@ -57,6 +57,7 @@ wzr-450hp2)
 
 archer-c5 |\
 archer-c7 |\
+dw33d |\
 tl-wdr4900-v2)
 	ucidef_set_interfaces_lan_wan "eth1" "eth0"
 	ucidef_add_switch "switch0" "1" "1"
@@ -231,7 +232,8 @@ wnr2000-v3 |\
 wnr2000-v4 |\
 wnr2200 |\
 wnr612-v2 |\
-wnr1000-v2)
+wnr1000-v2 |\
+wpn824n)
 	ucidef_set_interfaces_lan_wan "eth1" "eth0"
 	ucidef_add_switch "switch0" "1" "1"
 	ucidef_add_switch_vlan "switch0" "1" "0 1 2 3 4"
@@ -322,6 +324,7 @@ dlan-pro-1200-ac)
 	ucidef_add_switch_vlan "switch0" "0" "0 2 3 4"
 	;;
 
+alfa-ap120c |\
 all0305 |\
 antminer-s1 |\
 antminer-s3 |\
@@ -331,8 +334,9 @@ cap4200ag |\
 eap300v2 |\
 eap7660d |\
 el-mini |\
-gl-usb150 |\
 loco-m-xw |\
+mr1750 |\
+mr1750v2 |\
 mr600 |\
 mr600v2 |\
 mr900 |\
@@ -362,6 +366,7 @@ tl-wa801nd-v2 |\
 tl-wa901nd |\
 tl-wa901nd-v2 |\
 tl-wa901nd-v3 |\
+tl-wa901nd-v4 |\
 tl-wr703n |\
 tube2h |\
 wndap360 |\
@@ -378,9 +383,6 @@ alfa-ap96 |\
 alfa-nx |\
 ap83 |\
 gl-ar150 |\
-gl-ar300m |\
-gl-mifi |\
-gl-domino |\
 gl-inet |\
 jwap003 |\
 pb42 |\
@@ -390,12 +392,6 @@ tl-wr710n |\
 tl-wr720n-v3|\
 wpe72)
 	ucidef_set_interfaces_lan_wan "eth1" "eth0"
-	;;
-
-gl-ar300)
-	ucidef_set_interfaces_lan_wan "eth1" "eth0"
-	ucidef_add_switch "switch0" "1" "1"
-	ucidef_add_switch_vlan "switch0" "1" "0 1 2 3 4"
 	;;
 
 wpj344)
@@ -444,6 +440,7 @@ tl-wr741nd |\
 tl-wr741nd-v4 |\
 tl-wr841n-v7 |\
 tl-wr841n-v9 |\
+tl-wr841n-v11 |\
 whr-g301n |\
 whr-hp-g300n |\
 whr-hp-gn |\
