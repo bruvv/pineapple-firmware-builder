@@ -1,4 +1,5 @@
 1. download the latest firmware from here: https://www.wifipineapple.com/downloads
+
 Latest firmware version 2.7.0 as time of writing
 
 2. Unpacking
