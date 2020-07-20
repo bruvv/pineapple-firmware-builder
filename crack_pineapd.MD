@@ -12,9 +12,11 @@ I use binwalk, but other unpacking tools are fine. Any unpacking tool that suppo
 I'm using the latest version of Ghidra, the highest version of Ghidra as of now is 9.1.2
 
 5. open Ghidra's string window
+
 Thank goodness official wifipineapple didn't shell pineapd, or it would be cool. Opening the string window will reveal a couple of shell commands
 
 6. Find the authentication part of the data segment
+
 Following up on these strings of shell commands on the data side, the point of finding the data segment is to cross-reference the next step, so you can clearly see which logical code in the code end is referencing that data
 It is something like:
 
@@ -24,20 +26,26 @@ s_dmesh_|_head_-n2_|_awk_'FNR_==_2_0041c0d4
 
 
 7. Cross-references
+
 Cross Reference See which functions use this data. The address `0040e960` was found to reference this data
 
 8. According to the cross-reference to find the verification function logic code, and draw the patch method
-This paragraph starts with the logic of the pineapd validation function, and on the right is the flowchart.
 
+This paragraph starts with the logic of the pineapd validation function, and on the right is the flowchart.
 As we can see from the code, if the validation is successful, it will return _s2, which is a pointer variable that will most likely be called by another function. One is to modify the data side of the program directly to enable the program to execute unintended shell commands, and then read the return value of the shell command into the program in accordance with the operation of the program itself, and then return it to normal after the strcmp command.
 The second method is to directly modify the runtime environment of dmesg, so that dmesg after the original shell command output can be normal. Here I will introduce you to the first method, first construct a shell command with an output of 44b65156.
 Use echo and awk or whatever you can. Here I use the awk command
 
 `awk 'BEGIN{print "44b65156"}' `
+
 or
+
 `echo "44b65156"`
 
-9. Modify the shell command to assign the correct value to the `__S2` pointer variable. ghidra is easy to modify strings, you can find the physical address of a string and modify it directly in the editor. What if the original command is very long, but the command we want to change is very short? You can just use 20, which is the space bar. For example:
+9. Modify the shell command to assign the correct value to the `__S2` pointer variable.
+
+ghidra is easy to modify strings, you can find the physical address of a string and modify it directly in the editor. What if the original command is very long, but the command we want to change is very short? You can just use 20, which is the space bar. For example:
+
 ```
 /* WARNING: Unknown calling convention yet parameter storage is locked */
 /* gtmgc() */
