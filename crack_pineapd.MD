@@ -2,14 +2,17 @@
 Latest firmware version 2.7.0 as time of writing
 
 2. Unpacking
+
 I use binwalk, but other unpacking tools are fine. Any unpacking tool that supports squashfs will work. The purpose of unpacking is to get the pineapd file. If you are lazy, you can also download it directly from wifipineapple.
 
 
 3. Open the usr/sbin directory, and find pineapd.
+
 There's a pineapd in there that we need to patch.
 
 
 4. Use Ghidra to load pineapd
+
 I'm using the latest version of Ghidra, the highest version of Ghidra as of now is 9.1.2
 
 5. open Ghidra's string window
