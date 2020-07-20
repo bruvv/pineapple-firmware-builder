@@ -1,7 +1,7 @@
 1. download the latest firmware from here: https://www.wifipineapple.com/downloads
 Latest firmware version 2.7.0 as time of writing
 
-2.Unpacking
+2. Unpacking
 I use binwalk, but other unpacking tools are fine. Any unpacking tool that supports squashfs will work. The purpose of unpacking is to get the pineapd file. If you are lazy, you can also download it directly from wifipineapple.
 
 
