@@ -63,7 +63,7 @@
     "lodash.without": "~4.4.0",
     "mkdirp": "~1.0.0",
     "node-gyp": "~7.1.0",
-    "nopt": "~3.0.6",
+    "nopt": "~5.0.0",
     "normalize-git-url": "~3.0.2",
     "normalize-package-data": "~2.3.5",
     "npm-cache-filename": "~1.0.2",
