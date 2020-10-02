@@ -187,7 +187,7 @@
     "write-file-atomic"
   ],
   "devDependencies": {
-    "deep-equal": "2.0.3",
+    "deep-equal": "2.0.4",
     "marked": "1.2.0",
     "marked-man": "0.1.6",
     "npm-registry-couchapp": "3.0.0",
