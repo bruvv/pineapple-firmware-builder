@@ -65,7 +65,7 @@
     "node-gyp": "~7.1.0",
     "nopt": "~5.0.0",
     "normalize-git-url": "~3.0.2",
-    "normalize-package-data": "~2.3.5",
+    "normalize-package-data": "~3.0.0",
     "npm-cache-filename": "~1.0.2",
     "npm-install-checks": "~4.0.0",
     "npm-package-arg": "~8.0.0",
