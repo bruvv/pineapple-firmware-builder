@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "marked": "1.2.7",
-    "js-yaml": "3.14.1"
+    "js-yaml": "4.0.0"
   },
   "devDependencies": {},
   "optionalDependencies": {},
