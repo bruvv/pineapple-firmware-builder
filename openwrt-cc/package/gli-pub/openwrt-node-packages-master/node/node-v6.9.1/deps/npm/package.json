@@ -90,7 +90,7 @@
     "sha": "~2.0.1",
     "slide": "~1.1.6",
     "sorted-object": "~2.0.0",
-    "strip-ansi": "~6.0.0",
+    "strip-ansi": "~7.0.0",
     "tar": "~6.1.0",
     "text-table": "~0.2.0",
     "uid-number": "0.0.6",
