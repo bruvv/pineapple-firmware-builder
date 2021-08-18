@@ -79,7 +79,7 @@
     "read": "~1.0.7",
     "read-cmd-shim": "~2.0.0",
     "read-installed": "~4.0.3",
-    "read-package-json": "~3.0.0",
+    "read-package-json": "~4.0.0",
     "read-package-tree": "~5.1.5",
     "readable-stream": "~2.3.0",
     "realize-package-specifier": "~3.0.3",
