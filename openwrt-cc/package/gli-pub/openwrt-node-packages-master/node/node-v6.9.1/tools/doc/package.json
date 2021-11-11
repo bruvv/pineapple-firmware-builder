@@ -7,7 +7,7 @@
     "node": ">=0.6.10"
   },
   "dependencies": {
-    "marked": "4.0.0",
+    "marked": "4.0.1",
     "js-yaml": "4.1.0"
   },
   "devDependencies": {},
