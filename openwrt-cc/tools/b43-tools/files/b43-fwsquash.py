@@ -12,7 +12,7 @@ import sys
 import os
 
 def usage():
-	print("Usage: %s PHYTYPES COREREVS /path/to/extracted/firmware" % sys.argv[0])
+	print(f"Usage: {sys.argv[0]} PHYTYPES COREREVS /path/to/extracted/firmware")
 	print("")
 	print("PHYTYPES is a comma separated list of:")
 	print("A         => A-PHY")
@@ -47,16 +47,13 @@ except ValueError:
 fwfiles = os.listdir(fwpath)
 fwfiles = filter(lambda str: str.endswith(".fw"), fwfiles)
 if not fwfiles:
-	print("ERROR: No firmware files found in %s" % fwpath)
+	print(f"ERROR: No firmware files found in {fwpath}")
 	sys.exit(1)
 
 required_fwfiles = []
 
 def revs_match(revs_a, revs_b):
-	for rev in revs_a:
-		if rev in revs_b:
-			return True
-	return False
+	return any(rev in revs_b for rev in revs_a)
 
 def phytypes_match(types_a, types_b):
 	for type in types_a:
@@ -140,10 +137,10 @@ for f in fwfiles:
 		   phytypes_match(phytypes, initvalmapping[f][1]):
 			required_fwfiles += [f]
 		continue
-	print("WARNING: Firmware file %s not found in the mapping lists" % f)
+	print(f"WARNING: Firmware file {f} not found in the mapping lists")
 
 for f in fwfiles:
 	if f not in required_fwfiles:
-		print("Deleting %s" % f)
-		os.unlink(fwpath + '/' + f)
+		print(f"Deleting {f}")
+		os.unlink(f'{fwpath}/{f}')
 
