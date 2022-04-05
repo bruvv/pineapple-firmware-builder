@@ -53,7 +53,7 @@
     "iferr": "~1.0.0",
     "inflight": "~1.0.5",
     "inherits": "~2.0.3",
-    "ini": "~2.0.0",
+    "ini": "~3.0.0",
     "init-package-json": "~3.0.0",
     "lockfile": "~1.0.1",
     "lodash._baseuniq": "~4.6.0",
