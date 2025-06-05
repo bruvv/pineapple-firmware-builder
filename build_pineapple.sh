@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 top=$(pwd)
 
@@ -23,26 +24,26 @@ apt_get() {
 }
 
 install_binwalk() {
-    cd "$top/binwalk"
+    cd "$top/binwalk" || exit
     ./deps.sh
     sudo python setup.py install
-    cd "$top"
+    cd "$top" || exit
 }
 
 first_run() {
-    cd "$top"
+    cd "$top" || exit
     apt_get
     git submodule update --recursive --remote
     wget https://www.wifipineapple.com/downloads/nano/latest -O upgrade-"$upstream_version".bin
     touch "$top"/configs/.upstream_version
-    cp "$top"/configs/gl-ar150-defconfig "$top"/openwrt-cc/.config
+    cp "$top/configs/gl-ar150-defconfig" "$top/openwrt-cc/.config"
     mkdir "$top"/firmware_images
     extract_firmware
 }
 
 install_scripts() {
     echo "updating openwrt"
-    cd "$top/openwrt-cc"
+    cd "$top/openwrt-cc" || exit
     ./scripts/feeds update -a
     ./scripts/feeds install -a
 }
@@ -50,24 +51,25 @@ install_scripts() {
 build_firmware() {
     echo "Everything is ready to start the build, grab some coffee this can take a long time (90 minutes or more!)"
     sleep 3
-    cd "$top/openwrt-cc"
+    cd "$top/openwrt-cc" || exit
     make download
-    make -j$(cat /proc/cpuinfo | grep "^processor" | wc -l)
-    for line in $(find "$top/openwrt-cc/bin" -name "*-sysupgrade.bin"); do
+    make -j"$(nproc)"
+    find "$top/openwrt-cc/bin" -name "*-sysupgrade.bin" -print0 | \
+    while IFS= read -r -d '' line; do
         cp "$line" "$top/firmware_images/wifi-pineapple-$upstream_version-gl-ar150-sysupgrade.bin"
-        echo "[*] New build ready at -"$top"/firmware_images/wifi-pineapple-"$upstream_version"-gl-ar150-sysupgrade.bin"
+        echo "[*] New build ready at - $top/firmware_images/wifi-pineapple-$upstream_version-gl-ar150-sysupgrade.bin"
     done
-    cd "$top"
+    cd "$top" || exit
 }
 
 full_build() {
-    upstream_version=`curl -s https://www.wifipineapple.com/downloads/nano/ | \
-            python -c "import sys, json; print(json.load(sys.stdin)['version'])"`
-    current_version=`cat "$top"/configs/.upstream_version`
+    upstream_version=$(curl -s https://www.wifipineapple.com/downloads/nano/ | \
+            python -c "import sys, json; print(json.load(sys.stdin)['version'])")
+    current_version=$(cat "$top"/configs/.upstream_version)
 
-    if [ -f ""$top"/configs/.upstream_version" ]; then
-        echo "config file found, Upstream version="$upstream_version" and latest build="$current_version". No need to update. Want to force a rebuild? Use -f."
-        cd "$top"
+    if [ -f "$top/configs/.upstream_version" ]; then
+        echo "config file found, Upstream version=$upstream_version and latest build=$current_version. No need to update. Want to force a rebuild? Use -f."
+        cd "$top" || exit
         echo "updating submodules to make sure there is a fresh build ready if needed."
         git submodule update --remote
         exit
@@ -85,25 +87,31 @@ full_build() {
     build_firmware
 }
 
-if [ "$1" = "-f" ]; then
-    echo "forcing new build."
-    rm "$top"/configs/.upstream_version
-    cp "$top"/configs/gl-ar150-defconfig "$top"/openwrt-cc/.config
-    full_build
-elif
-    [ "$1" = "-c" ]; then
-    current_version=`cat "$top"/configs/.upstream_version`
-    echo "cleaning up..."
-    rm -rf "$top"/_upgrade-"$current_version".bin.extracted/
-    rm -rf "$top"/upgrade-"$current_version".bin
-    cd "$top"/openwrt-cc
-    make dirclean
-    rm -f .config
-    rm -rf files
-    cd "$top"
-    echo "all cleaned up, do you want to rerun the build? Use -f"
-elif
-    [ -z "$1" ]; then
-    cp "$top"/configs/gl-ar150-defconfig "$top"/openwrt-cc/.config
-    full_build
-fi
+case "${1-}" in
+    -f)
+        echo "forcing new build."
+        rm "$top"/configs/.upstream_version
+        cp "$top/configs/gl-ar150-defconfig" "$top/openwrt-cc/.config"
+        full_build
+        ;;
+    -c)
+        current_version=$(cat "$top"/configs/.upstream_version)
+        echo "cleaning up..."
+        rm -rf "$top/_upgrade-${current_version}.bin.extracted/"
+        rm -rf "$top/upgrade-${current_version}.bin"
+        cd "$top/openwrt-cc" || exit
+        make dirclean
+        rm -f .config
+        rm -rf files
+        cd "$top" || exit
+        echo "all cleaned up, do you want to rerun the build? Use -f"
+        ;;
+    "" )
+        cp "$top/configs/gl-ar150-defconfig" "$top/openwrt-cc/.config"
+        full_build
+        ;;
+    *)
+        echo "Usage: $0 [-f] [-c]" >&2
+        exit 1
+        ;;
+esac
