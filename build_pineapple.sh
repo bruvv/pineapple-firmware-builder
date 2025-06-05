@@ -48,7 +48,7 @@ install_scripts() {
 }
 
 build_firmware() {
-    echo "Everything is ready to start the build, grab some coffe this can take a long time (90 minutes or more!)"
+    echo "Everything is ready to start the build, grab some coffee this can take a long time (90 minutes or more!)"
     sleep 3
     cd "$top/openwrt-cc"
     make download
@@ -76,7 +76,7 @@ full_build() {
         first_run
     fi
     
-    if [ "$upstream_version" > "$current_version" ]; then
+    if [ "$upstream_version" \> "$current_version" ]; then
         echo "extracting firmware now."
         extract_firmware
     fi
