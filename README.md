@@ -1,5 +1,5 @@
-# WORK IN PROGRESS!
-This project is still a work in progress and is for educational purposes only. It makes our GL-AR150 run OpenWrt with the Hak5 Pineapple skin.
+# NO DEVELOPEMENT ANYMORE
+Since i destroyed my uboot but blowing up the boot chip I can no longer test my own findings, so please use this on your own risk (or do not desolder chips as me ;) )
 
 ### Firmware
 If you have something that is missing in the build (like firmware) let me know. I made it as complete as possible but I can't know all the firmwares.
